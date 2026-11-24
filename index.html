@@ -32,8 +32,8 @@
     --brand-text-header: #ffffff;
     --brand-blue: #2563eb;
     --panel-gray: #f1f5f9;
-    --logo-chatime: url("https://png.pngtree.com/png-clipart/20230916/original/pngtree-cute-ghost-logo-vector-illustration-clipart-png-image_12237138.png");
-    --sticky-top-offset: 78px;
+    --logo-chatime: url("https://pub-e6e58aeeeb9c474fb0d35a5f6f05b8ca.r2.dev/uploads/icon/ya18c_icon.png");
+    --sticky-top-offset: 100px;
   }
 
   /* Dual Brand Mode OUAST / Cupbop Yellow Override */
@@ -190,7 +190,7 @@
     z-index: 250;
     background: var(--bg);
     padding-top: 6px;
-    padding-bottom: 6px;
+    padding-bottom: 0;
     transition: background-color 0.25s ease;
   }
 
@@ -218,7 +218,7 @@
     min-width: 150px;
     font-family: inherit;
   }
-  
+
   .btn-pic {
     background: #f1f5f9;
     color: #0f172a;
@@ -318,6 +318,7 @@
     border-bottom: 2px solid var(--line);
     margin-bottom: 0;
     align-items: center;
+    background: var(--bg);
   }
   .tab {
     padding: 8px 16px;
@@ -328,8 +329,7 @@
     border-bottom: 3px solid transparent;
     margin-bottom: -2px;
     transition: all 0.2s ease;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -394,19 +394,19 @@
   .panel.active { display: block; }
 
   /* ============ ITEM TABLE ============ */
-  .table-wrapper { position: relative; }
+  .table-wrapper { position: relative; background: var(--card); }
   table.item-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    overflow: visible;
   }
-  table.item-table thead th:first-child { border-top-left-radius: 12px; }
-  table.item-table thead th:last-child { border-top-right-radius: 12px; }
+  table.item-table thead th:first-child,
+  table.item-table thead th:last-child {
+    border-radius: 0;
+  }
   .item-table thead th {
     text-align: center;
     font-size: 10.5px;
@@ -427,7 +427,7 @@
   }
   .item-table thead th:hover { color: var(--brand-primary); }
   .item-table thead th .arrow { font-size: 8.5px; margin-left: 3px; opacity: 0.6; }
-  
+
   .item-table tbody td {
     padding: 6px 10px;
     border-bottom: 1px solid var(--line);
@@ -439,7 +439,7 @@
   .item-table tbody tr:nth-child(even) { background-color: #f8fafc; }
   .item-table tbody tr:last-child td { border-bottom: none; }
   .item-table tbody tr:hover { background: #f1f5f9; }
-  
+
   .item-table tbody tr.is-expired { background: var(--danger-bg) !important; }
   .item-table tbody tr.is-expired:hover { background: #fde8e8 !important; }
   .item-table tbody tr.is-expired td { color: var(--danger); }
@@ -563,11 +563,19 @@
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* ============ KELOLA ARTIKEL ============ */
+  .kelola-sticky-bar {
+    position: sticky;
+    top: var(--thead-top, 160px);
+    z-index: 210;
+    background: var(--bg);
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
   .artikel-toolbar {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
   }
   .artikel-toolbar .spacer { flex: 1; }
@@ -588,8 +596,9 @@
   .artikel-tabs {
     display: flex;
     gap: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     border-bottom: 1px solid var(--line);
+    background: var(--bg);
   }
   .artikel-tab {
     padding: 6px 14px;
@@ -607,8 +616,7 @@
     border-collapse: collapse;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 0;
   }
   .artikel-table thead th {
     text-align: left;
@@ -618,8 +626,12 @@
     text-transform: uppercase;
     padding: 8px 12px;
     background: #f8fafc;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 2px solid var(--line);
     user-select: none;
+    position: sticky;
+    top: var(--kelola-thead-top, 235px);
+    z-index: 200;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
   }
   .artikel-table thead th.sortable { cursor: pointer; }
   .artikel-table thead th.sortable:hover { color: var(--brand-primary); }
@@ -1021,7 +1033,7 @@
     box-sizing: border-box !important;
   }
   #picModal.modal-overlay.show, #alarmModal.modal-overlay.show { display: flex !important; }
-  
+
   #picModal .modal-box, #alarmModal .modal-box {
     background: #fff !important;
     border-radius: 14px !important;
@@ -1035,7 +1047,7 @@
     position: relative !important;
     margin: auto !important;
   }
-  
+
   #picModal .modal-header, #alarmModal .modal-header {
     display: flex !important;
     justify-content: space-between !important;
@@ -1057,7 +1069,6 @@
   }
   #picModal .modal-close:hover, #alarmModal .modal-close:hover { background: #f1f5f9 !important; }
 
-  /* Perbaikan layout vertikal terpisah agar tidak bertumpuk/berantakan */
   #picModal .modal-body {
     padding: 16px 18px !important;
     display: flex !important;
@@ -1082,7 +1093,7 @@
     margin-top: 8px !important;
   }
   #picModal .modal-body label:first-child { margin-top: 0 !important; }
-  
+
   #picModal .modal-body input {
     width: 100% !important;
     padding: 7px 10px !important;
@@ -1129,7 +1140,7 @@
     color: #64748b !important;
   }
   #picModal .modal-list { max-height: 200px !important; overflow-y: auto !important; }
-  
+
   #picModal .pic-row {
     display: flex !important;
     align-items: center !important;
@@ -1324,18 +1335,20 @@
     </div>
 
     <div id="kelola" class="panel">
-      <div class="artikel-toolbar">
-        <button class="btn primary" id="addArtikelBtn">+ Tambah Artikel Baru</button>
-        <div class="artikel-search-wrap">
-          <input type="text" id="artikelSearchBox" placeholder="Cari nama / masa simpan...">
+      <div class="kelola-sticky-bar" id="kelolaStickyBar">
+        <div class="artikel-toolbar">
+          <button class="btn primary" id="addArtikelBtn">+ Tambah Artikel Baru</button>
+          <div class="artikel-search-wrap">
+            <input type="text" id="artikelSearchBox" placeholder="Cari nama / masa simpan...">
+          </div>
+          <div class="spacer"></div>
+          <span style="font-size:11px;color:var(--muted);font-weight:500;">Gunakan tombol ▲/▼ atau drag baris</span>
         </div>
-        <div class="spacer"></div>
-        <span style="font-size:11px;color:var(--muted);font-weight:500;">Gunakan tombol ▲/▼ atau drag baris</span>
-      </div>
 
-      <div class="artikel-tabs">
-        <div class="artikel-tab active" data-artikel-cat="labelling">Labelling Chatime</div>
-        <div class="artikel-tab" data-artikel-cat="ouast">Labelling OUAST</div>
+        <div class="artikel-tabs">
+          <div class="artikel-tab active" data-artikel-cat="labelling">Labelling Chatime</div>
+          <div class="artikel-tab" data-artikel-cat="ouast">Labelling OUAST</div>
+        </div>
       </div>
 
       <table class="artikel-table" id="artikelTable">
@@ -1423,6 +1436,12 @@
    CHECKLIST LABELLING - DENGAN ALARM EXPIRED OTOMATIS
    ========================================================= */
 
+const STORE_CODE = 'F796';
+const STORAGE_KEYS = {
+  data: `checklist_labelling_${STORE_CODE.toLowerCase()}_data`,
+  state: `checklist_labelling_${STORE_CODE.toLowerCase()}_state`
+};
+
 const API_URL = 'https://script.google.com/macros/s/AKfycbwh5LazENi8Mrh7ZXT_jvskiBEDSKEFBMEmkhy9Usc0e5kpSkL7F2NmyeNYQpy_Ket7/exec';
 const SYNC_DEBOUNCE_MS = 1500;
 const SEGERA_THRESHOLD = 0.20;
@@ -1433,6 +1452,7 @@ let state = {
   labelling: {},
   ouast: {},
   meta: {
+    storeCode: STORE_CODE,
     picOpening: '',
     picClosing: '',
     tanggal: '',
@@ -1622,12 +1642,13 @@ function showSyncBadge(status, message) {
 }
 
 function saveAll() {
+  state.meta.storeCode = STORE_CODE;
   state.meta.lastModified = Date.now();
   state.meta.picList = PIC_LIST;
-  
+
   try {
-    localStorage.setItem('kios_batoh_data', JSON.stringify(DATA));
-    localStorage.setItem('kios_batoh_state', JSON.stringify(state));
+    localStorage.setItem(STORAGE_KEYS.data, JSON.stringify(DATA));
+    localStorage.setItem(STORAGE_KEYS.state, JSON.stringify(state));
   } catch (e) {
     console.error('Gagal menyimpan ke localStorage:', e);
   }
@@ -1649,8 +1670,10 @@ async function syncToSheets() {
   showSyncBadge('syncing', '🔄 Menyimpan ke Cloud...');
 
   try {
+    state.meta.storeCode = STORE_CODE;
     state.meta.picList = PIC_LIST;
     const payload = {
+      store: STORE_CODE,
       data: DATA,
       state: state,
       meta: state.meta
@@ -1658,6 +1681,7 @@ async function syncToSheets() {
 
     const body = new URLSearchParams();
     body.append('action', 'save');
+    body.append('store', STORE_CODE);
     body.append('payload', JSON.stringify(payload));
 
     const res = await fetch(API_URL, {
@@ -1685,8 +1709,8 @@ async function syncToSheets() {
 
 async function loadFromSheets() {
   try {
-    const localData = localStorage.getItem('kios_batoh_data');
-    const localState = localStorage.getItem('kios_batoh_state');
+    const localData = localStorage.getItem(STORAGE_KEYS.data);
+    const localState = localStorage.getItem(STORAGE_KEYS.state);
     if (localData && localState) {
       DATA = JSON.parse(localData);
       state = JSON.parse(localState);
@@ -1699,9 +1723,10 @@ async function loadFromSheets() {
   }
 
   if (!API_URL || API_URL.indexOf('TEMPEL') === 0) return true;
-  
+
   try {
-    const res = await fetch(API_URL + '?action=load');
+    const url = `${API_URL}?action=load&store=${encodeURIComponent(STORE_CODE)}`;
+    const res = await fetch(url);
     const json = await res.json();
     if (!json || !json.ok || !json.data) return false;
 
@@ -1709,16 +1734,17 @@ async function loadFromSheets() {
     const remoteTimestamp = remoteData.meta ? (remoteData.meta.lastModified || 0) : 0;
     const localTimestamp = state.meta ? (state.meta.lastModified || 0) : 0;
 
-    if (remoteTimestamp >= localTimestamp || (!localStorage.getItem('kios_batoh_data'))) {
+    if (remoteTimestamp >= localTimestamp || (!localStorage.getItem(STORAGE_KEYS.data))) {
       DATA = remoteData.data || DATA;
       state = remoteData.state || state;
+      if (state.meta) state.meta.storeCode = STORE_CODE;
 
       if (state.meta && Array.isArray(state.meta.picList)) {
         PIC_LIST = state.meta.picList;
       }
 
-      localStorage.setItem('kios_batoh_data', JSON.stringify(DATA));
-      localStorage.setItem('kios_batoh_state', JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEYS.data, JSON.stringify(DATA));
+      localStorage.setItem(STORAGE_KEYS.state, JSON.stringify(state));
     }
 
     return true;
@@ -1933,7 +1959,7 @@ function openAlarmModal(items) {
 
 function closeAlarmModal() {
   document.getElementById('alarmModal').classList.remove('show');
-  alarmDismissedThisSession = true; 
+  alarmDismissedThisSession = true;
 }
 
 document.getElementById('closeAlarmModal').addEventListener('click', closeAlarmModal);
@@ -1944,7 +1970,7 @@ document.getElementById('alarmModal').addEventListener('click', (e) => {
 
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
-    alarmDismissedThisSession = false; 
+    alarmDismissedThisSession = false;
     checkExpiredAndTriggerAlarm();
   }
 });
@@ -1972,12 +1998,18 @@ function updateStickyPositions() {
   const stickyTop = document.getElementById('stickyTop');
   if (!header || !stickyTop) return;
 
-  const headerHeight = Math.ceil(header.getBoundingClientRect().height);
+  const headerHeight = Math.floor(header.getBoundingClientRect().height);
   document.documentElement.style.setProperty('--sticky-top-offset', headerHeight + 'px');
 
-  const stickyTopHeight = Math.ceil(stickyTop.offsetHeight);
+  const stickyTopHeight = Math.floor(stickyTop.getBoundingClientRect().height);
   const theadOffset = headerHeight + stickyTopHeight;
   document.documentElement.style.setProperty('--thead-top', theadOffset + 'px');
+
+  const kelolaBar = document.getElementById('kelolaStickyBar');
+  if (kelolaBar && kelolaBar.offsetHeight > 0) {
+    const kelolaBarHeight = Math.floor(kelolaBar.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--kelola-thead-top', (theadOffset + kelolaBarHeight) + 'px');
+  }
 }
 
 window.addEventListener('resize', updateStickyPositions);
@@ -2044,7 +2076,7 @@ function renderArtikelTable() {
     const tr = document.createElement('tr');
     tr.draggable = true;
     tr.dataset.idx = origIdx;
-    
+
     const isFirst = origIdx === 0;
     const isLast = origIdx === (DATA[cat] || []).length - 1;
 
@@ -2269,12 +2301,7 @@ document.getElementById('resetAllBtn').addEventListener('click', () => {
   const cat = activeTab;
   if (cat === 'kelola') { showToast('Tidak bisa reset dari tab Kelola Artikel.'); return; }
   const label = cat === 'labelling' ? 'Labelling Chatime' : 'Labelling OUAST';
-  if (!confirm(`Reset semua data checklist di tab "${label}"?
-
-Semua tanggal produksi, jam, centang, dan PIC akan dibersihkan.
-Daftar artikel TIDAK akan terhapus.
-
-Lanjut?`)) return;
+  if (!confirm(`Reset semua data checklist di tab "${label}"?\n\nSemua tanggal produksi, jam, centang, dan PIC akan dibersihkan.\nDaftar artikel TIDAK akan terhapus.\n\nLanjut?`)) return;
 
   (DATA[cat] || []).forEach(([name]) => {
     writeItemState(cat, slugify(name), { prodDate: '', prodTime: '', checked: false });
@@ -2367,9 +2394,7 @@ document.getElementById('artikelBody').addEventListener('click', (e) => {
   if (btnDel) {
     const idx = parseInt(btnDel.dataset.idx, 10);
     const name = DATA[cat][idx][0];
-    if (!confirm(`Hapus artikel "${name}"?
-
-Data checklist untuk artikel ini juga akan dihapus.`)) return;
+    if (!confirm(`Hapus artikel "${name}"?\n\nData checklist untuk artikel ini juga akan dihapus.`)) return;
     if (state[cat]) delete state[cat][slugify(name)];
     DATA[cat].splice(idx, 1);
     saveAll();
@@ -2623,7 +2648,7 @@ document.getElementById('floatDownloadBtn').addEventListener('click', async (e) 
     document.body.removeChild(clone);
 
     const tanggal = (state.meta.tanggal || getTodayISO()).replace(/-/g, '');
-    const filename = `Checklist-Labelling-suzuyaaceh_${tanggal}.png`;
+    const filename = `Checklist-Labelling-${STORE_CODE.toLowerCase()}_${tanggal}.png`;
 
     const link = document.createElement('a');
     link.download = filename;
@@ -2686,9 +2711,8 @@ function savePicList(list) {
   PIC_LIST = list;
   if (state && state.meta) {
     state.meta.picList = list;
-    state.meta.lastModified = Date.now();
   }
-  scheduleSyncToSheets();
+  saveAll();
 }
 
 function renderPicDropdowns() {
@@ -2828,9 +2852,9 @@ document.getElementById('picForm').addEventListener('submit', (e) => {
 /* ============ INIT APLIKASI ============ */
 (async function init() {
   showSyncBadge('syncing', '🔄 Memuat data...');
-  
+
   await loadFromSheets();
-  
+
   applyMetaToControls();
   renderAll();
   updateSummary(activeTab);
